@@ -120,7 +120,7 @@ module fifo_cu
   //       rd_addr = h_addr % FIFO_DEPTH;
   //       wr_addr = (h_addr + fifo_size) % FIFO_DEPTH;
   always_comb begin
-    {push_grant_out, pop_valid_out} = state;            /* note how when state = RESET (2'b00) {push_grant_out, pop_valid_out} should be 2'b00, when state = EMPTY (2'b10) {push_grant_out, pop_valid_out} should be 2'b01... */
+    {push_grant_out, pop_valid_out} = state;            /* note how when state = RESET (2'b00) {push_grant_out, pop_valid_out} should be 2'b00, when state = EMPTY (2'b10) {push_grant_out, pop_valid_out} should be 2'b10... */
     rd_addr = h_addr;                                   /* read data from the head of the fifo; fifo is modeled as a cyclic array */
     wr_addr = h_addr + fifo_size;                       /* write data to the "first empty position" (i.e. head of the fifo plus fifo size) of the fifo; fifo is modeled as a cyclic array */
   end
