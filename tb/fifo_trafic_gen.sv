@@ -61,9 +61,8 @@ module fifo_trafic_gen
     
     forever begin
       seq_item = new();
-      // VALID_RANDOMIZATION: assert (randomize(seq_item))
-      // else $error("Sequence item randomization failed");
-      seq_item.data = seq_item.item_id;                 /* NOTE: the simulator does not allow data randomization so this is a workaround */
+      VALID_RANDOMIZATION: assert (randomize(seq_item))
+      else $error("Sequence item randomization failed");
       send_seq_item(seq_item);
     end
   endtask: random_trafic
@@ -78,9 +77,8 @@ module fifo_trafic_gen
     
     repeat (FIFO_DEPTH) begin
       seq_item = new();
-      // VALID_RANDOMIZATION: assert (randomize(seq_item))
-      // else $error("Sequence item randomization failed");
-      seq_item.data = seq_item.item_id;                 /* NOTE: the simulator does not allow data randomization so this is a workaround */
+      VALID_RANDOMIZATION: assert (randomize(seq_item))
+      else $error("Sequence item randomization failed");
       send_seq_item(seq_item);
     end
     
